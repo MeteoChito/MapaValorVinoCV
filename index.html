@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/VINO_0.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[37.8367197718,-2.78769298198],[40.0652514384,0.605296672673]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_VINO_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Categoría'] !== null ? Autolinker.link(String(feature.properties['Categoría'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tipología'] !== null ? Autolinker.link(String(feature.properties['Tipología'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tipolog�_1'] !== null ? Autolinker.link(String(feature.properties['Tipolog�_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tipolog�_2'] !== null ? Autolinker.link(String(feature.properties['Tipolog�_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tipolog�_3'] !== null ? Autolinker.link(String(feature.properties['Tipolog�_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tipolog�_4'] !== null ? Autolinker.link(String(feature.properties['Tipolog�_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nombre'] !== null ? Autolinker.link(String(feature.properties['Nombre'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Descripci�'] !== null ? Autolinker.link(String(feature.properties['Descripci�'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Temporada'] !== null ? Autolinker.link(String(feature.properties['Temporada'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fecha'] !== null ? Autolinker.link(String(feature.properties['Fecha'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Certificac'] !== null ? Autolinker.link(String(feature.properties['Certificac'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nivel de i'] !== null ? Autolinker.link(String(feature.properties['Nivel de i'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nivel de f'] !== null ? Autolinker.link(String(feature.properties['Nivel de f'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dirección'] !== null ? Autolinker.link(String(feature.properties['Dirección'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['y'] !== null ? Autolinker.link(String(feature.properties['y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['x'] !== null ? Autolinker.link(String(feature.properties['x'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Población'] !== null ? Autolinker.link(String(feature.properties['Población'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Código po'] !== null ? Autolinker.link(String(feature.properties['Código po'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Delimitaci'] !== null ? Autolinker.link(String(feature.properties['Delimitaci'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Delimita_1'] !== null ? Autolinker.link(String(feature.properties['Delimita_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Delimita_2'] !== null ? Autolinker.link(String(feature.properties['Delimita_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Delimita_3'] !== null ? Autolinker.link(String(feature.properties['Delimita_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Delimita_4'] !== null ? Autolinker.link(String(feature.properties['Delimita_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Producto1'] !== null ? Autolinker.link(String(feature.properties['Producto1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Producto2'] !== null ? Autolinker.link(String(feature.properties['Producto2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Producto3'] !== null ? Autolinker.link(String(feature.properties['Producto3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Producto4'] !== null ? Autolinker.link(String(feature.properties['Producto4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Producto5'] !== null ? Autolinker.link(String(feature.properties['Producto5'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca1'] !== null ? Autolinker.link(String(feature.properties['Comarca1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca2'] !== null ? Autolinker.link(String(feature.properties['Comarca2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca3'] !== null ? Autolinker.link(String(feature.properties['Comarca3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca4'] !== null ? Autolinker.link(String(feature.properties['Comarca4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca5'] !== null ? Autolinker.link(String(feature.properties['Comarca5'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca6'] !== null ? Autolinker.link(String(feature.properties['Comarca6'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Comarca7'] !== null ? Autolinker.link(String(feature.properties['Comarca7'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Elaborado'] !== null ? Autolinker.link(String(feature.properties['Elaborado'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Paisaje'] !== null ? Autolinker.link(String(feature.properties['Paisaje'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Provincia'] !== null ? Autolinker.link(String(feature.properties['Provincia'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_VINO_0_0(feature) {
+            switch(String(feature.properties['Categoría'])) {
+                case 'Actividad turística':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ACTIVIDAD-TURISMO.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Agencia turística':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/AGENCIA-TURISMO.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Espacio de comercialización':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ESPACIO-COMERCIO.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Feria, muestra o evento':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/FERIA-MUESTRA-EVENTO.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Instalación visitable':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/PRODUCTOR-INSTALACION-VISITABLE.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Museo/CI':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/MUSEO.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Patrimonio inmueble':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/PATRIMONIO-INMUEBLE.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Productor':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/PRODUCTOR.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Productor/instalación visitable':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/PRODUCTOR-INSTALACION-VISITABLE.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Ruta/itinerario':
+                    return {
+                pane: 'pane_VINO_0',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/RUTA-ITINERARIO.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_VINO_0');
+        map.getPane('pane_VINO_0').style.zIndex = 400;
+        map.getPane('pane_VINO_0').style['mix-blend-mode'] = 'normal';
+        var layer_VINO_0 = new L.geoJson(json_VINO_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_VINO_0',
+            onEachFeature: pop_VINO_0,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_VINO_0_0(feature));
+            },
+        });
+        var cluster_VINO_0 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_VINO_0.addLayer(layer_VINO_0);
+
+        bounds_group.addLayer(layer_VINO_0);
+        cluster_VINO_0.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'VINO<br /><table><tr><td style="text-align: center;"><img src="legend/VINO_0_Actividadturstica0.png" /></td><td>Actividad turística</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Agenciaturstica1.png" /></td><td>Agencia turística</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Espaciodecomercializacin2.png" /></td><td>Espacio de comercialización</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Feriamuestraoevento3.png" /></td><td>Feria, muestra o evento</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Instalacinvisitable4.png" /></td><td>Instalación visitable</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_MuseoCI5.png" /></td><td>Museo/CI</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Patrimonioinmueble6.png" /></td><td>Patrimonio inmueble</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Productor7.png" /></td><td>Productor</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Productorinstalacinvisitable8.png" /></td><td>Productor/instalación visitable</td></tr><tr><td style="text-align: center;"><img src="legend/VINO_0_Rutaitinerario9.png" /></td><td>Ruta/itinerario</td></tr></table>': cluster_VINO_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
